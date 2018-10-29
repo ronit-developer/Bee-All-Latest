@@ -17,6 +17,8 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import { DirectoryComponent } from './directory/directory.component';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import { DirectoryModule } from './directory/directory.module';
+import { PaginationComponent } from './shared/pagination/pagination.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     SidebarComponent,
     DirectoryComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     StoreModule,
     MemberModule,
-    CompanyModule,
+    CompanyModule,    
   ],
   providers: [UserActions],
   bootstrap: [AppComponent]

@@ -1,0 +1,10 @@
+<div>
+    <div class="pagination left">
+        <button (click)="onSetPage(currentPage - 1)" [disabled]="currentPage === 1 || loading" [ngClass]="{ 'disabled': currentPage === 1 || loading }">&laquo;</button>
+        <button *ngFor="let pageNum of getPages(); trackBy: trackByIndex" (click)="onSetPage(pageNum)" [ngClass]="{'active': pageNum === currentPage, 'disabled': loading}">{{ pageNum }}</button>
+        <button (click)="onSetPage(currentPage + 1)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">&raquo;</button>
+    </div>
+    <div class="right">
+        <span class="page-counts">Showing {{ getMin() }} - {{ getMax() }} of {{ count }} records</span>
+    </div>
+</div>

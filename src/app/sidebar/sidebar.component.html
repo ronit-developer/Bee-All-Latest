@@ -1,20 +1,23 @@
 <div class="sidebar">
-  <div class="nav-container">
-    <div class="sub-menu">
-      <div>
-        <nav class="navbar navbar-default" role="navigation">
-          <ul class="nav navbar-nav">
-            <li [ngClass]="{'active': directoryActive}">
-              <a [routerLink]="directoryUrl">Community Directory</a></li>
+	<div class="nav-container">
+		<div class="sub-menu">
+			<div>
+				<nav class="navbar navbar-default" role="navigation">
+					<ul class="nav navbar-nav">
+						<li [ngClass]="{'active': directoryActive}">
+							<a [routerLink]="directoryUrl">Community Directory</a>
+						</li>
 
-            <li [ngClass]="{'active': profileActive}">
-              <a [routerLink]="profileUrl">My Profile</a></li>
+						<li [ngClass]="{'active': profileActive}">
+							<a [routerLink]="profileUrl">My Profile</a>
+						</li>
 
-            <li [ngClass]="{'active': companyActive}">
-              <a [routerLink]="companyUrl">My Company</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
+						<li [ngClass]="{'active': companyActive}">
+							<a [routerLink]="companyUrl">My Company</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>

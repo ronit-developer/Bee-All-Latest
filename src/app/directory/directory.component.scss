@@ -1,9 +1,48 @@
 @import "../../variables";
 
-.member-list-container {
-  max-width: 660px;
-  min-width: 660px;
+.header {
+  margin-left: $marginLeft;
+  margin-top: $marginTop;
+}
 
+.drop-down {
+  margin-bottom: 20px;
+
+  span {
+    font-weight: 400;
+    line-height: .25;
+    font-size: .75rem;
+    display: inline-block;
+
+  }
+
+  .select {
+    display: inline-block;
+    font-weight: 400;
+    font-size: .75rem;
+    line-height: .25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .25rem 0;
+    border-radius: .25rem;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+}
+
+.main-wrapper {
+  width: 80vw;
+  margin-left: $marginLeft;
+
+}
+
+.member-list-container {  
   .members-list {
     .ba-box {
       display: flex;
@@ -13,10 +52,12 @@
       padding: 15px 10px 15px 10px;
       box-shadow: 1px 1px 5px 0 rgb(185, 184, 185);
     }
+
     .member {
       .avatar {
         align-self: center;
         flex: 80px 0 0;
+
         .profile-img {
           width: 80px;
           height: 80px;
@@ -24,27 +65,33 @@
           overflow: hidden;
         }
       }
+
       .member-info {
         margin-left: 20px;
+
         h3 {
           font-family: Roboto, "Helvetica Neue", sans-serif;
           color: $blue;
           font-size: 18px;
           line-height: 22px;
           margin-bottom: 1px;
+
           a {
             color: inherit;
+
             &:hover {
               text-decoration: none;
             }
           }
         }
+
         p {
           display: flex;
           font-family: Roboto, "Helvetica Neue", sans-serif;
           font-size: 13px;
           line-height: 20px;
           margin-bottom: 5px;
+
           img {
             align-self: center;
             width: 18px;
@@ -73,5 +120,37 @@
         }
       }
     }
+  }
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87%;
+}
+
+.searchbox {
+  padding: 6px 15px;
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: .75rem;
+  line-height: .25;
+  border: none;
+  border-radius: 25px !important;
+  margin-left: 60px;
+}
+
+.location {
+  font-size: 11px;
+
+  img {
+    padding-right: 5px;
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    align-self: center;
   }
 }

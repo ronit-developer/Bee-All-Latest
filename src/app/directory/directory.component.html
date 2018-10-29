@@ -1,42 +1,115 @@
-<div class="member-list-container" *ngIf="members">
-  <div *ngFor="let member of members">
-    <div class="members-list">
-      <div class="ba-box member">
-        <!--Profile picture-->
-        <div class="avatar">
-          <img class="profile-img" *ngIf="member.profile_picture_url"
-               [src]="member.profile_picture_url" onerror="this.src='assets/images/person_ph.svg'" alt="">
-          <img class="profile-img" *ngIf="!member.profile_picture_url"
-               src="assets/images/person_ph.svg">
-        </div>
+<div class="header">
+  <h5>Community Directory</h5>
+</div>
 
-        <div class="member-info">
-          <!--Name-->
-          <h3>{{member?.first_name}} {{member?.last_name}}</h3>
+<div class="main-wrapper">
+  <div class="drop-down">
+    <span class="select">Type: </span>
+    <select class="select" (change)="getDirectory($event.target.value)">
+      <option value="members">
+        Members</option>
+      <option value="companies">Companies</option>
+    </select>
+  
+    <input type="text" class="searchbox" placeholder="Search Members" name="search">
+  
+  </div>
+ 
+ 
+ 
+  <div *ngIf="type === 'members'">
+    <div class="member-list-container" *ngIf="members">
+      <div *ngFor="let member of members">
+        <div class="members-list">
+          <div class="ba-box member">
+            <!--Profile picture-->
+            <div class="avatar">
+              <img class="profile-img" *ngIf="member.profile_picture_url" [src]="member.profile_picture_url" onerror="this.src='assets/images/person_ph.svg'"
+                alt="">
+              <img class="profile-img" *ngIf="!member.profile_picture_url" src="assets/images/person_ph.svg">
+            </div>
 
-          <!--Title-->
-          <p>{{member?.title}}</p>
+            <div class="member-info">
+              <!--Name-->
+              <h3>
+                <a routerLink="/member/{{member.id}}">{{member?.first_name}} {{member?.last_name}}</a>
+              </h3>
 
-          <!--Company-->
-          <p class="company" *ngIf="member.company">
-            <img src="assets/images/workplace.svg" alt="">
-            <span>{{member?.company?.name}}</span>
-          </p>
+              <!--Title-->
+              <p>{{member?.title}}</p>
 
-          <!--Location-->
-          <p class="location" *ngIf="member.location">
-            <img src="assets/images/location-icon.svg" alt="">
-            <span>{{member?.location?.site_code}}</span>
-          </p>
+              <!--Company-->
+              <p class="company" *ngIf="member.company">
+                <img src="assets/images/workplace.svg" alt="">
+                <span>{{member?.company?.name}}</span>
+              </p>
 
-          <!--Skills-->
-          <div>
-            <span class="skills-container">
-              <span class="skill" *ngFor="let skill of member.skills">{{skill.name}}</span>
-            </span>
+              <!--Location-->
+              <p class="location" *ngIf="member.location">
+                <img src="assets/images/location-icon.svg" alt="">
+                <span>{{member?.location?.site_code}}</span>
+              </p>
+
+              <!--Skills-->
+              <div>
+                <span class="skills-container">
+                  <span class="skill" *ngFor="let skill of member.skills">{{skill.name}}</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="type === 'companies'">
+    <div class="member-list-container" *ngIf="companies">
+      <div *ngFor="let company of companies">
+        <div class="members-list">
+          <div class="ba-box member">            
+            <div class="avatar">
+              <img class="profile-img" *ngIf="company.profile_picture_url" [src]="company.profile_picture_url" onerror="this.src='assets/images/person_ph.svg'"
+                alt="">
+              <img class="profile-img" *ngIf="!company.profile_picture_url" src="assets/images/person_ph.svg">
+            </div>
+
+            <div class="member-info">
+              <!--Name-->
+              <h3>
+                <a routerLink="/company/{{company.id}}">{{company?.name}}</a>
+              </h3>
+
+              <!--Slogan-->
+              <p>{{company?.slogan}}</p>
+
+
+              <div class="location">
+                <img src="assets/images/location-icon.svg" alt="">
+                <span *ngFor="let site of company.locations; let lastSite = last">
+                  BE ALL {{"sites." + site.site_code | translate}}, {{"cities." + site.city_code | translate}}
+                  <span *ngIf="!lastSite">
+                    <br>
+                  </span>
+                </span>
+              </div>
+
+              <p class="company-text">
+                <img src="assets/images/link.svg" alt="">
+                <a [href]="company.website" target="_blank">{{company.website}}</a>
+              </p>
+              <!--Skills-->
+              <div>
+                <span class="skills-container">
+                  <span class="skill" *ngFor="let industry of company.industries">{{industry.name}}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="member-list-container">
+    <ba-pagination (setPage)="setPage($event)" [pagesToShow]="5" [currentPage]="currentPage" [perPage]="pageSize" [count]="total"></ba-pagination>
   </div>
 </div>
