@@ -1,0 +1,217 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto:100,300,400,500,700');
+
+html {
+  background-color: $main-bgc !important;
+  body {
+    font-family: Roboto, sans-serif !important;
+  }
+}
+
+button {
+  &:focus {
+    outline: none !important;
+  }
+}
+
+*,
+*:before,
+*:focus,
+*:after {
+  box-sizing: inherit;
+  outline: none;
+}
+
+input {
+  border-radius: 0 !important;
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  border: 1px solid #DDDDDD;
+  border-radius: 0;
+}
+
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 1px $blue;
+  border: 1px solid $blue;
+}
+
+input[type=text]::placeholder, textarea::placeholder {
+  color: $ba-gray-text;
+}
+
+//disable resize for text area
+textarea {
+  resize: none !important;
+}
+
+.al-main {
+  background-color: $main-bgc;
+}
+
+.close {
+  font-weight: 400 !important;
+  :focus {
+    outline: none !important;
+  }
+}
+
+// Global class for ng-bootstrap modal override
+@media (min-width: 576px) {
+  .modal-dialog {
+    position: relative;
+    max-width: 50em !important;
+    width: 46em !important;
+    height: auto;
+    top: 100px;
+  }
+  .modal-sm {
+    max-width: 576px !important;
+  }
+  .modal-content {
+  }
+  .modal-open {
+    overflow-y: auto !important;
+  }
+}
+
+// Tooltip styles
+.tooltip-inner {
+  background-color: $white !important;
+  padding: 0 !important;
+  color: $gray-light !important;
+  font-size: 12px;
+}
+
+.tooltip.show {
+  opacity: 1 !important;
+}
+
+.tooltip-inner::before {
+  border-bottom-color: transparent !important;
+  left: 49% !important;
+  content: "";
+  border-width: 0 10px 5px !important;
+  width: 0;
+  height: 0;
+  z-index: 1000;
+}
+
+.tooltip.tooltip-bottom .tooltip-inner::before {
+  border-bottom-color: $white !important;
+}
+
+.tooltip.tooltip-bottom {
+  box-shadow: 1px 1px 5px 0 rgb(185, 184, 185);
+  padding: 0 !important;
+}
+
+.ba-member-tool-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: #fff;
+  opacity: 1;
+  color: black;
+  border: 1px;
+  text-align: left;
+  box-shadow: 1px 1px 5px 0 rgb(185, 184, 185);
+
+  .name {
+    font-size: 14px;
+    color: $blue;
+  }
+  .title {
+    font-size: 12px;
+  }
+  .company {
+    display: flex;
+    font-size: 11px;
+    padding-top: 2px;
+    img {
+      padding-right: 5px;
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      align-self: center;
+    }
+  }
+  .location {
+    display: flex;
+    font-size: 11px;
+    padding-top: 2px;
+    img {
+      padding-right: 5px;
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      align-self: center;
+    }
+  }
+}
+
+// Global styles for in-app objects
+.ba-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $main-bgc;
+  justify-content: center;
+  margin-left: 5%;
+  padding-top: $marginTop;
+
+}
+
+.ba-page-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: $main-bgc;
+  align-items: center;
+  width: 80vw;
+  margin-left: $marginLeft;
+  margin-top: $marginTop;
+}
+
+.ba-page-content-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  background-color: $main-bgc;
+  align-self: center;
+  width: 80vw;
+  max-width: 1080px;
+  justify-content: center;
+}
+
+.ba-main-left-container {
+  padding: 0 0 10% 0;
+  align-self: center;
+  width: 66%;
+}
+
+.ba-main-left-content {
+  flex: 1;
+  align-self: center;
+  max-width: 660px;
+}
+
+.ba-main-right-container {
+  flex: 0 0 300px;
+  justify-content: center;
+  margin-left: 3vw;
+}
+
+.ba-main-right-content {
+  justify-content: center;
+  flex: 1;
+  background-color: $main-bgc;
+  position: fixed;
+}

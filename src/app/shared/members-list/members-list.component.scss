@@ -1,0 +1,64 @@
+@import "../../../variables";
+
+.box-members-container {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: 5px;
+
+  .title-header {
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .team-link {
+    color: $blue;
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+  .members-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 300px;
+    .members {
+      cursor: pointer;
+      .profile-image {
+        width: 47px;
+        height: 47px;
+        margin: 5px 10px;
+        border-radius: 50%;
+      }
+    }
+    .additional-avatar {
+      width: 47px;
+      height: 47px;
+      margin: 5px 10px;
+      border-radius: 50%;
+      color: $white;
+      background-color: $blue;
+      text-align: center;
+      align-self: center;
+      align-content: center;
+      padding-top: 14px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.header {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 17pt;
+  color: $gray-light;
+  padding-bottom: 20px;
+  font-weight: 100;
+}
+
+.last {
+  margin-right: 0 !important;
+}

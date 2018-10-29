@@ -1,0 +1,12 @@
+{
+  "cities": {
+    "RMG": "Ramat Gan",
+    "TLV": "Tel Aviv",
+    "GVT": "Givatayim"
+  },
+  "sites": {
+    "Alon": "Alon",
+    "ShaharTower": "HaShahar",
+    "Arlozorov": "Arlozorov"
+  }
+}

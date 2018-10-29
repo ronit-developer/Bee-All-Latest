@@ -1,0 +1,27 @@
+<!--Header with text and close (x) button-->
+<div class="modal-header">
+  <!--<h4>{{ title }}</h4>-->
+  <span class="title">{{title}}</span>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
+    <i class="fa fa-times"></i>
+  </button>
+</div>
+
+<div class="wrapper">
+  <!--Members list-->
+  <div class="members-list" *ngFor="let m of members">
+    <!--Profile picture-->
+    <div class="avatar">
+      <!--Profile picture or placeholder if the member didn't set a profile picture-->
+      <img *ngIf="m.profilePictureUrl"
+           [src]="m.profilePictureUrl" onerror="this.src='assets/images/person_ph.svg'">
+      <img *ngIf="!m.profilePictureUrl"
+           src="assets/images/person_ph.svg">
+    </div>
+    <!--Member info-->
+    <div class="info">
+      <a class="member-name" [routerLink]="m.memberUrl" (click)="activeModal.close(false)">{{m.name}}</a>
+      <div>{{m.companyName}}</div>
+    </div>
+  </div>
+</div>

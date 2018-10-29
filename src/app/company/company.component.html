@@ -1,0 +1,137 @@
+<div class="main-wrapper">
+  <div class="company-container">
+    <!--top container-->
+    <div class="company-top-container">
+      <!--spinner-->
+      <ba-spinner *ngIf="pending$ | async" class="spinner" [color]="'#2895ff'"></ba-spinner>
+
+      <!--container for data after load-->
+      <div class="company-top-container-data" *ngIf="!(pending$ | async)">
+
+        <!--company picture-->
+        <div class="img-placeholder">
+          <!--company picture: If there's a picture, show it-->
+          <div *ngIf="company.pictureUrl" class="img-fix-size">
+            <!--company profile image-->
+            <img [src]="company.pictureUrl" alt="" class="company-picture"
+                 onerror="this.src = 'assets/images/company_ph1.svg'">
+          </div>
+
+          <!--default image: If there's no picture display placeholder pic-->
+          <img class="company-picture" src="assets/images/company_ph1.svg"
+               *ngIf="!company.pictureUrl">
+        </div>
+
+
+        <!--company details-->
+        <div class="company-info">
+
+          <!--top div company: Name & Slogan-->
+          <div class="company-name">
+            <!--Company name-->
+            <section><div class="name-title">{{company.name}}</div></section>
+
+            <!--Slogan-->
+            <div class="field-wrapper">
+              <div class="company-text" dir="auto"> {{company.slogan}}</div>
+            </div>
+          </div>
+
+          <!--second div -> company-info -->
+          <div class="second-container">
+            <!--left div-->
+            <div class="member-details-left-container">
+              <!--Site-->
+              <div class="field-wrapper">
+                <!--Icon-->
+                <img src="assets/images/location-icon.svg" alt="">
+                <!--Text - Concatenate all sites separated by slash-->
+                <div class="company-text">
+                  <span *ngFor="let site of company.sites; let lastSite = last">
+                  BE ALL {{"sites." + site.siteCode | translate}}, {{"cities." + site.cityCode | translate}}
+                    <span *ngIf="!lastSite"><br></span>
+                  </span>
+                </div>
+              </div>
+
+              <!--website-->
+              <div class="field-wrapper">
+                <!--Icon & website with link-->
+                <img src="assets/images/link.svg" alt="">
+                <div class="company-text"><a [href]="company.website | url" target="_blank">{{company.website}}</a></div>
+              </div>
+            </div>
+
+            <!--right div member-info -->
+            <div class="member-details-right-container">
+              <!--Email-->
+              <div class="field-wrapper">
+                <!--Icon & email with link-->
+                <img src="assets/images/email.svg" alt="">
+                <div class="company-text"><a [href]="'mailto:'+ company.email">{{company.email}}</a></div>
+              </div>
+
+              <!--Phone-->
+              <div class="field-wrapper">
+                <!--Icon & phone with link-->
+                <img src="assets/images/phone.svg" alt="">
+                <div class="company-text">{{company.phone}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-body-container">
+      <div class="company-body-content">
+
+        <!--left side -->
+        <div class="company-left-container">
+
+          <ba-post-place-holder *ngIf="pending$ | async"></ba-post-place-holder>
+
+          <!--About block / pencil-->
+          <div class="about-us info-box" *ngIf="!(pending$ | async)">
+            <div class="about-us-header-container">
+              <span class="about-header">About</span>
+            </div>
+
+            <!--my description / about us -->
+            <div class="my-description" dir="auto">
+              <section [innerHTML]="company.aboutUs"></section>
+            </div>
+          </div>
+
+          <ba-post-place-holder *ngIf="pending$ | async"></ba-post-place-holder>
+
+          <!--Industries block-->
+          <div class="industries info-box" *ngIf="!(pending$ | async)">
+            <!--Header-->
+            <div class="industries-header-container">
+              <span class="industries-header">We are active in...</span>
+            </div>
+
+            <!--industries list -->
+            <div class="industries-container">
+              <section class="industry" [ngClass]="{'first-industry':first}"
+                       *ngFor="let industry of company.industries; let first = first">
+                <section>{{ industry.name }}</section>
+              </section>
+            </div>
+          </div>
+        </div>
+
+
+        <!--right side -->
+        <div class="company-right-container">
+          <ba-members-list *ngIf = "!(pending$ | async)"
+                           [text] = "'Team members'"
+                           [setMembers] = "company.members"
+                           [maxDisplayedMembers] = 4>
+          </ba-members-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

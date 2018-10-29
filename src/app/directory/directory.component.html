@@ -1,0 +1,42 @@
+<div class="member-list-container" *ngIf="members">
+  <div *ngFor="let member of members">
+    <div class="members-list">
+      <div class="ba-box member">
+        <!--Profile picture-->
+        <div class="avatar">
+          <img class="profile-img" *ngIf="member.profile_picture_url"
+               [src]="member.profile_picture_url" onerror="this.src='assets/images/person_ph.svg'" alt="">
+          <img class="profile-img" *ngIf="!member.profile_picture_url"
+               src="assets/images/person_ph.svg">
+        </div>
+
+        <div class="member-info">
+          <!--Name-->
+          <h3>{{member?.first_name}} {{member?.last_name}}</h3>
+
+          <!--Title-->
+          <p>{{member?.title}}</p>
+
+          <!--Company-->
+          <p class="company" *ngIf="member.company">
+            <img src="assets/images/workplace.svg" alt="">
+            <span>{{member?.company?.name}}</span>
+          </p>
+
+          <!--Location-->
+          <p class="location" *ngIf="member.location">
+            <img src="assets/images/location-icon.svg" alt="">
+            <span>{{member?.location?.site_code}}</span>
+          </p>
+
+          <!--Skills-->
+          <div>
+            <span class="skills-container">
+              <span class="skill" *ngFor="let skill of member.skills">{{skill.name}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

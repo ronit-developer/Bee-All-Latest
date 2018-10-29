@@ -1,0 +1,211 @@
+<div class="main-wrapper">
+  <div class="profile-container">
+    <!--top container-->
+    <div class="profile-top-container">
+      <!--spinner-->
+      <ba-spinner *ngIf="pending$ | async" class="spinner" [color]="'#2895ff'"></ba-spinner>
+      <!--container for data after load-->
+      <div class="profile-top-container-data" *ngIf="!(pending$ | async)">
+        <!--image place holder-->
+        <div class="img-placeholder">
+          <!--user profile image-->
+          <img *ngIf="member?.pictureUrl"
+               [src]="member?.pictureUrl" alt="profile picture" class="profile-picture"
+               onerror="this.src = 'assets/images/person_ph.svg'">
+
+          <!--default image-->
+          <img class="profile-picture" *ngIf="!member?.pictureUrl"
+               src="assets/images/person_ph.svg">
+        </div>
+
+
+        <!--member details-->
+        <div class="member-info">
+          <!--top div member-->
+          <div class="member-name">
+            <!--Name-->
+            <section>
+              <div class="name-title">{{member?.firstName}} {{member?.lastName}}</div>
+            </section>
+
+            <!--Title-->
+            <div class="field-wrapper">
+              <!--title init state  / title is empty-->
+              <div class="text blue" *ngIf="!isEditTitle && !member?.title && isSelf" (click)="setTitleState()">
+                + Enter your profession
+              </div>
+              <!--display title-->
+              <div *ngIf="member?.title && !isEditTitle" class="profile-title-text" dir="auto">{{member?.title}}</div>
+
+              <!--display pencil-->
+              <i class="fa fa-pencil pencil" aria-hidden="true" (click)="setTitleState()"
+                 *ngIf="member?.title && isSelf && !isEditTitle"></i>
+
+              <!--input title field -->
+              <input class="input-text"
+                     *ngIf="isEditTitle"
+                     ng2focus
+                     type="text"
+                     dir="auto"
+                     maxlength="128"
+                     [(ngModel)]="member.title"
+                     (blur)="saveTitle($event)"
+                     (keydown.enter)="saveTitle($event)"
+                     (keydown.esc)="cancelEditTitle()"
+              >
+            </div>
+          </div>
+
+          <!--second div -> member-info -->
+          <div class="second-container">
+            <!--left div-->
+            <div class="second-container-wrapper">
+              <!--company name-->
+              <div class="field-wrapper">
+                <img src="assets/images/workplace.svg" alt="">
+                <div class="text"> {{member?.company.name}}</div>
+              </div>
+              <!--location-->
+              <div class="field-wrapper">
+                <img src="assets/images/location-icon.svg" alt="">
+                <!--Location-->
+                <div class="text">
+                  BE ALL&nbsp;{{"sites." + member?.location?.siteCode | translate}}, {{"cities." +
+                  member?.location?.cityCode | translate}}
+                </div>
+              </div>
+              <!--website-->
+              <div class="field-wrapper" *ngIf="member?.company.website">
+                <img src="assets/images/link.svg" alt="">
+                <div class="text"><a [href]="member?.company?.website | url"
+                                     target="_blank">{{member?.company?.website}}</a>
+                </div>
+              </div>
+            </div>
+
+            <!--right div member-info -->
+            <div class="member-details-right-container">
+              <!--Email-->
+              <div class="field-wrapper">
+                <!--icon-->
+                <img src="assets/images/email.svg" alt="">
+                <!--text-->
+                <div class="text email">
+                  <a [href]="'mailto:'+ member?.email">{{member?.email}}</a>
+                </div>
+              </div>
+
+              <!--Mobile-->
+              <div class="field-wrapper">
+                <!--icon-->
+                <img src="assets/images/phone.svg" alt="">
+                <!--text, cancel automatic phone formatting for specific browsers (Edge)-->
+                <div class="text" x-ms-format-detection="none">
+                  {{member?.mobilePhone}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-body-container">
+      <div class="profile-body-content">
+        <!--left side -->
+        <div class="profile-left-container">
+          <!--Set 3 placeholders while pending-->
+          <div class="place-holder-profile" *ngIf="pending$ | async">
+            <ba-post-place-holder></ba-post-place-holder>
+            <ba-post-place-holder></ba-post-place-holder>
+            <ba-post-place-holder></ba-post-place-holder>
+          </div>
+
+          <!--Nice to meet you / pencil block-->
+          <div class="nice-to-meet info-box" *ngIf="!(pending$ | async)">
+            <div class="nice-to-meet-header-container">
+              <span class="box-header">Nice to meet you!</span>
+              <i class="fa fa-pencil pencil" aria-hidden="true" (click)="setAboutMeState()"
+                 *ngIf="member?.aboutMe && isSelf && !isEditingAboutMe"></i>
+            </div>
+            <!--init / empty state -->
+            <section class="clickable-line" (click)="setAboutMeState()"
+                     *ngIf="isSelf && !member?.aboutMe && !isEditingAboutMe">
+              + Enter a few words about yourself
+            </section>
+
+            <!--my description / about me -->
+            <div class="my-description box-body" dir="auto">
+              <section [innerHTML]="member?.aboutMe | newline"
+                       *ngIf="member?.aboutMe && !isEditingAboutMe"></section>
+            </div>
+
+            <div *ngIf="isEditingAboutMe" class="input">
+              <textarea ng2focus
+                        class="text-area"
+                        type="text"
+                        dir="auto"
+                        rows="4"
+                        #textArea
+                        baAutosize
+                        maxlength="1000"
+                        (keydown.esc)="cancelEditAboutMe()"
+                        (keydown.control.Enter)="saveAboutMe()"
+                        [(ngModel)]="member.aboutMe"
+              ></textarea>
+              <div class="button-container">
+                <button class="ba-btn-outline" (click)="saveAboutMe()">Save</button>
+                <button class="ba-btn-outline" (click)="cancelEditAboutMe()">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+          <!--Skills block-->
+          <div class="ask-me-about info-box" *ngIf="!(pending$ | async)">
+            <div class="skills-header-container">
+              <span class="box-header">Skills and interests</span>
+            </div>
+
+            <!--skills list -->
+            <div class="skills-container">
+              <section class="skill" *ngFor="let skill of member?.skills">{{skill.name}}</section>
+            </div>
+          </div>
+
+          <!--My company block-->
+          <div class="my-company info-box" *ngIf="!(pending$ | async)">
+            <div class="box-header company-header">My company</div>
+            <!--init message / empty aboutUs-->
+            <section class="box-body" *ngIf="isSelf && !member.company.aboutUs">
+              Edit company details on
+              <a [routerLink]="companyUrl" class="clickable-line">my company</a> page
+            </section>
+            <!--about us block-->
+            <div class="company-details box-body">
+              <img class="company-logo" *ngIf="member?.company?.pictureUrl"
+                   [src]="member?.company?.pictureUrl" onerror="this.src='assets/images/company_ph1.svg'">
+              <img class="company-logo" *ngIf="!member?.company?.pictureUrl"
+                   src="assets/images/company_ph1.svg">
+
+              <div class="company-about">
+                <section class="company-name">{{member?.company.name}}</section>
+                <div class="company-description">
+                  <section *ngIf="member?.company?.aboutUs"
+                           dir="auto"
+                           [innerHTML]="member?.company?.aboutUs | newline"></section>
+                  <div><a [routerLink]="companyUrl">View company page</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--right side -->
+        <div class="profile-right-container">
+          <!--TODO Profile right container-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

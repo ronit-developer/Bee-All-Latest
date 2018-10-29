@@ -1,0 +1,205 @@
+@import "../../variables";
+
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  margin-left: $marginLeft;
+  margin-top: $marginTop;
+  .company-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: $main-bgc;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    max-width: $fixedSize;
+    font-size: 13px;
+
+    .company-top-container {
+      width: 100%;
+      max-width: $fixedSize;
+      padding: 25px 20px 10px 20px;
+      background-color: #fff;
+      height: 14em;
+      box-shadow: 1px 1px 5px 0 rgb(185, 184, 185);
+      align-self: center;
+      .company-top-container-data {
+        display: flex;
+        flex: 1;
+        width: 100%;
+
+        .img-placeholder {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0 35px 0 0;
+          height: 100%;
+
+          .img-fix-size {
+            flex: 0 0 140px;
+          }
+
+          img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+          }
+        }
+
+        .company-info {
+          padding: 10px 0;
+          min-width: 80%;
+
+          .company-name {
+            font-family: $font;
+            font-size: 13px;
+            .name-title {
+              font-size: 18px;
+              color: $nameColor;
+              line-height: 20px;
+              margin-bottom: 5px;
+            }
+
+            div {
+              padding-right: 5px;
+            }
+          }
+
+          .field-wrapper {
+            display: flex;
+            padding-bottom: 10px;
+            align-self: baseline;
+            img {
+              align-self: center;
+              width: 20px;
+              height: 20px;
+              margin-right: 15px;
+            }
+          }
+
+          .second-container {
+            display: flex;
+            margin-top: 5px;
+            align-items: baseline;
+            justify-content: space-between;
+          }
+
+          .member-details-left-container {
+            width: 400px;
+          }
+
+          .member-details-right-container {
+            width: 300px;
+          }
+        }
+
+        .company-text {
+          padding-right: 15px;
+          text-align: left;
+        }
+      }
+    }
+
+    .company-body-container {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      max-width: $fixedSize;
+      justify-content: center;
+      margin-top: 30px;
+      .company-body-content {
+        display: flex;
+        align-self: center;
+        width: 100%;
+
+        .company-left-container {
+          padding: 0 25px 25px 0;
+          flex: 2;
+          width: 100%;
+          height: 100%;
+
+          .info-box {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            background-color: #fff;
+            margin: 0 20px 20px 0;
+            padding: 25px 20px;
+            box-shadow: 1px 1px 5px 0 rgb(185, 184, 185);
+          }
+
+          .about-us {
+            .about-us-header-container {
+              display: flex;
+              justify-content: space-between;
+
+              .about-header {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 30px;
+                text-align: left;
+              }
+            }
+
+            .my-description {
+              display: flex;
+              justify-content: space-between;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 25px;
+            }
+          }
+
+          .industries {
+            .industries-header-container {
+              display: flex;
+              justify-content: space-between;
+
+              .industries-header {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 30px;
+                text-align: left;
+              }
+            }
+
+            .industries-container {
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+
+              .industry {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $skillBg;
+                color: $nameColor;
+                padding: 0 25px;
+                height: 25px;
+                font-size: 12px;
+                line-height: 50px;
+                border-radius: 25px;
+                margin: 10px 10px 10px 0;
+              }
+            }
+          }
+        }
+
+        .company-right-container {
+          width: 300px;
+          min-width: 300px;
+        }
+      }
+    }
+  }
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87%;
+}

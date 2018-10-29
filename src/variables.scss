@@ -1,0 +1,83 @@
+$white:  #fff !default;
+$black:  #202020 !default;
+$red:    #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green:  #00D37B !default;
+$green-dark:  #009d94 !default;
+$green-light:  #30966c !default;
+$blue:   #2895ff !default;
+$blue-dark: #2566b9 !default;
+$blue-light: #3a9dff !default;
+$blue-lighter: #f7fbff !default;
+$blue-welcome: #89ceff !default;
+$blue-circle:  #2794ff !default;
+$teal:   #5bc0de !default;
+$pink:   #ff5b77 !default;
+$purple: #613d7c !default;
+
+// Create grayscale
+$gray-dark:                 #292b2c !default;
+$gray:                      #434343 !default;
+$gray-light:                #636c72 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+$gray-ba:                   #dcdcdc !default;
+$grayed-out:                #c3c3c3 !default;
+$gray-text:                 #595959 !default;
+$gray-offer:                #f7f7f7 !default;
+
+
+// Reassign color vars to semantic color scheme
+$brand-primary:             $blue !default;
+$brand-success:             $green !default;
+$brand-info:                $teal !default;
+$brand-warning:             $orange !default;
+$brand-danger:              $red !default;
+$brand-inverse:             $gray-dark !default;
+
+
+
+
+$main-bgc: #efefef;
+$ba-gray-light: #efefef;
+$ba-gray-dark: #8a8a8a;
+$ba-gray-text: #c7c7c7;
+$ba-text-color: #202020;
+$ba-gray-disabled: #a2a2a2;
+$ba-sub-menu: #93a2aa;
+$header-text-color: #b2b2b2;
+$post-bgc: #ffffff;
+$nameColor: #2895ff;
+$top-bar-bg: #3a4043;
+$link-color: #338cf1;
+$dangerColor: #CC0000;
+$textColor: $gray;
+$skillBg: #dcdcdc;
+$fieldBg: #dcdcdc;
+$topNavbarHeight: 60px;
+$sideNavbarWidth: 35px;
+$navBgColor: #4f5b69;
+$logoBgColor: #41aaff;
+$sideBarBgColor: $white;
+$disabledBlueButton: #a9d4ff;
+$alert-bar: #d9edf6;
+$disabledLinkColor: #d2d2d2;
+$high-lighted: #f0f8ff;
+$header-text-color: #b2b2b2;
+$post-bgc: #ffffff;
+$nameColor: #2894FF;
+
+
+$fixedSize: 1080px;
+$marginLeft: 2.6vw;
+$marginTop: calc(1vw + 15px);
+$boardRightMinSize: 660px;
+$header-height: 61px;
+
+
+@media screen and (min-height: 700px ){
+  $marginTop: calc(1vw + 30px);
+}
+
+$font: Roboto, "Helvetica Neue", sans-serif;

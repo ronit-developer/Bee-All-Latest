@@ -1,0 +1,47 @@
+<!--page container -->
+<div class="box-members-container">
+  <h2 class="title-header" *ngIf="displayTitle">
+    {{text}} ({{numOfMembers}})
+  </h2>
+
+  <!--Members-->
+  <div class="members-container">
+    <span class="members"
+          [ngClass]="{'last': last}"
+          *ngFor="let m of displayedMembers; let last = last"
+          (mouseover)="showToolTip(m)"
+          [ngbTooltip]="tipContent">
+
+      <!--Profile picture or placeholder if the member didn't set a profile picture-->
+      <a [href]="m.profileUrl" [routerLink]="m.profileUrl">
+        <img class="profile-image" *ngIf="m.pictureUrl"
+             [src]="m.pictureUrl" onerror="this.src='assets/images/person_ph.svg'">
+        <img class="profile-image" *ngIf="!m.pictureUrl"
+             src="assets/images/person_ph.svg">
+      </a>
+    </span>
+    <!--Additional members avatar-->
+    <span ngClass="additional-avatar"
+          *ngIf="isMoreMembersThanMax"
+          (click)="showAllMembers()">
+     <span class="max-displayed-members">+{{members.length-maxDisplayedMembers+1}}</span>
+    </span>
+  </div>
+
+</div>
+
+<!--ToolTip template -->
+<ng-template #tipContent>
+  <div class="ba-member-tool-tip">
+    <section class="name">{{memberTT.name}}</section>
+    <section class="title">{{memberTT.title}}</section>
+    <section class="company">
+      <img src="assets/images/workplace.svg">
+      <span>{{memberTT.companyName}}</span>
+    </section>
+    <section class="location">
+      <img src="assets/images/location-icon.svg">
+     <span>BE ALL {{memberTT.location.siteCode}}</span>
+    </section>
+  </div>
+</ng-template>
